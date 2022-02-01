@@ -1,0 +1,17 @@
+{
+    "name": "wordleapi",
+    "version": "1.0.0",
+    "description": "Wordle REST API",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server"
+    },
+    "author": "Milton Chandradas",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.2",
+        "@sap/xsenv": "^3.1.0",
+        "@sap/xssec": "^3.0.10",
+        "passport": "^0.4.1"
+    }
+}

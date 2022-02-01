@@ -1,0 +1,35 @@
+applications:
+
+# Application
+- name: wordle
+  instances: 1
+  memory: 128M
+  routes:
+    - route: wordle-i825339.cfapps.us10.hana.ondemand.com
+  path: middleware
+  buildpacks:
+    - nodejs_buildpack  
+  timeout: 180
+  services:
+    - xsuaa-service-wordle
+    - saas-registry-wordle
+
+#Application Router
+- name: wordleapprouter
+  routes: 
+    - route: approuter-wordle-i825339.cfapps.us10.hana.ondemand.com
+  path: approuter
+  buildpacks:
+    - nodejs_buildpack
+  memory: 128M
+  services:
+    - xsuaa-service-wordle
+  env:
+    destinations: >
+      [
+        {"name":"wordle-destination",
+         "url":"https://wordle-i825339.cfapps.us10.hana.ondemand.com",
+         "forwardAuthToken": true}
+      ]
+    TENANT_HOST_PATTERN: "^(.*)-approuter-wordle-i825339.cfapps.us10.hana.ondemand.com"
+
