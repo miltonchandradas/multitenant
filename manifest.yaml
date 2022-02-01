@@ -12,7 +12,6 @@ applications:
   timeout: 180
   services:
     - xsuaa-service-wordle
-    - saas-registry-wordle
 
 #Application Router
 - name: wordleapprouter
@@ -31,5 +30,4 @@ applications:
          "url":"https://wordle-i825339.cfapps.us10.hana.ondemand.com",
          "forwardAuthToken": true}
       ]
-    TENANT_HOST_PATTERN: "^(.*)-approuter-wordle-i825339.cfapps.us10.hana.ondemand.com"
 

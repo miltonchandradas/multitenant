@@ -1,9 +1,0 @@
-{
-    "xsappname":"wordle",
-    "appUrls": {
-      "onSubscription" : "https://wordle-i825339.cfapps.us10.hana.ondemand.com/callback/v1.0/tenants/{tenantId}"
-    },
-    "displayName" : "Wordle",
-    "description" : "Wordle - Daily word puzzle",
-    "category" : "Custom SaaS Applications"
-  }

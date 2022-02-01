@@ -8,29 +8,10 @@ const xsenv = require('@sap/xsenv');
 // XSUAA Middleware
 passport.use(new JWTStrategy(xsenv.getServices({uaa:{tag:'xsuaa'}}).uaa));
 
-app.use(express.json());
-
 app.use(passport.initialize());
 app.use(passport.authenticate('JWT', { session: false }));
 
 const PORT = process.env.PORT || 4004;
-
-app.put('/callback/v1.0/tenants/*', function (req, res) {
-
-    console.log("Subscribed subdomain: ", req.body.subscribedSubdomain);
-    var consumerSubdomain = req.body.subscribedSubdomain;
-    var tenantAppURL = "https:\/\/" + consumerSubdomain + "-approuter-wordle-i825339.cfapps.us10.hana.ondemand.com/nextword";
-    res.status(200).send(tenantAppURL);
-  });
-
-app.delete('/callback/v1.0/tenants/*', function (req, res) {
-
-    console.log("Subscribed subdomain: ", req.body.subscribedSubdomain);
-    
-    var consumerSubdomain = req.body.subscribedSubdomain;
-    var tenantAppURL = "https:\/\/" + consumerSubdomain + "-approuter-wordle-i825339.cfapps.us10.hana.ondemand.com/nextword";
-    res.status(200).send(tenantAppURL);
-});
 
 app.get("/", (req, res) => {
 
@@ -68,16 +49,6 @@ app.get("/", (req, res) => {
    );
    res.status(201).json({ nextWord });
 });
-
-// Scope check
-// function checkReadScope(req, res, next) {
-// 	if (req.authInfo.checkLocalScope('read')) {
-// 		return next();
-// 	} else {
-//     	console.log('Missing the expected scope');
-//     	res.status(403).end('Forbidden');
-// 	}
-// }
 
 app.listen(PORT, () => {
    console.log(`Listening on port ${PORT}`);
